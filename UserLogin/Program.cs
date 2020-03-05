@@ -25,6 +25,9 @@ namespace UserLogin
             if (loginValidation.ValidateUserInput(ref user))
             {
                 Console.WriteLine(user.ToString());
+                
+                Console.WriteLine("Last time when you logged was before " + getDaysDifference(DateTime.Now, user.LastTimeLogged));
+                user.LastTimeLogged = DateTime.Now;
                 switch (LoginValidation.currentUserRole)
                 {
                     case UserRoles.ADMIN:
@@ -104,6 +107,12 @@ namespace UserLogin
             {
                 Console.WriteLine((int)role+" "+role);
             }
+        }
+
+        static private string getDaysDifference(DateTime one, DateTime two)
+        {
+            TimeSpan span = one - two;
+            return String.Format("{0} days, {1} hours, {2} minutes, {3} seconds", span.Days, span.Hours, span.Minutes, span.Seconds);
         }
     }
 

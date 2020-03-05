@@ -8,7 +8,7 @@ namespace UserLogin
 {
     static class UserData
     {
-        private static List<User> _testUsers;
+        static private List<User> _testUsers;
         static public List<User> TestUsers
         {
             get {
@@ -18,15 +18,15 @@ namespace UserLogin
             set { }
         }
 
-        private static void ResetTestUserData()
+        static private void ResetTestUserData()
         {
             _testUsers = new List<User>();
-            _testUsers.Add(new User("Goshko123", "45678", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue));
-            _testUsers.Add(new User("Student1", "Some pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue));
-            _testUsers.Add(new User("Student2", "stupidPassword", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue));
+            _testUsers.Add(new User("Goshko123", "45678", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now));
+            _testUsers.Add(new User("Student1", "Some pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now));
+            _testUsers.Add(new User("Student2", "stupidPassword", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, new DateTime(2020, 2, 1, 0, 0, 0)));
         }
 
-        public static User IsUserPassCorrect(String username, String password)
+        static public User IsUserPassCorrect(String username, String password)
         {
             User foundUser = FindUserByUsername(username);
             if (foundUser != null && foundUser.Password.Equals(password))
@@ -36,7 +36,7 @@ namespace UserLogin
             return null;
         }
 
-        public static void SetUserActiveTo(string username, DateTime newValidUntilDate)
+        static public void SetUserActiveTo(string username, DateTime newValidUntilDate)
         {
             User foundUser = FindUserByUsername(username);
             if(foundUser != null)
@@ -46,7 +46,7 @@ namespace UserLogin
             }
         }
 
-        public static void AssignUserRole(string username, UserRoles newRole)
+        static public void AssignUserRole(string username, UserRoles newRole)
         {
             User foundUser = FindUserByUsername(username);
             if(foundUser != null)
