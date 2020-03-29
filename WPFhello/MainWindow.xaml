@@ -1,0 +1,80 @@
+﻿<Window x:Class="WPFhello.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFhello"
+        mc:Ignorable="d"
+        Title="HelloWPF" Height="450" Width="800"
+        Closing="Window_Closing">
+    <GroupBox Header="GroupBox Sample">
+        <Grid Name="MainGrid">
+            <Label 
+                Name="lblHello" 
+                Content="Hello, WPF!" 
+                FontSize="50" 
+                Margin="0,0,0,0"
+            />
+            <Label 
+                Name="lblName" 
+                Content="Name:" 
+                Margin="10,100,0,250"
+            />
+            <TextBox 
+                Name="txtName"
+                Margin="70,105,500,265" 
+            />
+            <Label 
+                Name="lblName2" 
+                Content="Name:" 
+                Margin="10,150,0,200"
+            />
+            <TextBox 
+                Name="txtName2"
+                Margin="70,155,500,215" 
+            />
+            <Label 
+                Name="lblName3" 
+                Content="Name:" 
+                Margin="10,200,0,150"
+            />
+            <TextBox 
+                Name="txtName3"
+                Margin="70,205,500,165" 
+            />
+            <Button
+                Name="btnHello" 
+                Content="Hello" 
+                Margin="10,250,700,120" 
+                Click="btnHello_Click"
+            />
+            <ListBox Name="peopleListBox" Margin="550, 100, 50, 210">
+                <ListBoxItem Content="Mike"/>
+                <ListBoxItem Content="Lisa"/>
+                <ListBoxItem Content="John"/>
+                <ListBoxItem Content="Mary"/>
+            </ListBox>
+            <Button
+                Name="btnGreeting" 
+                Content="Greeting" 
+                Margin="550,200,50,170" 
+                Click="btnGreeting_Click"
+            />
+            <TextBlock 
+                Name="textBlock1"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                FontFamily="ArialBlack"
+                Text="I edit XAML myself!"
+            />
+            <Button 
+                Name="btnClick"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Bottom" 
+                Height="100" 
+                Content="Click me!"
+                Click="Button_Click"
+            />
+        </Grid>
+    </GroupBox>
+</Window>

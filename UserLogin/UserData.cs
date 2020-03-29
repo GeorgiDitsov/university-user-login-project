@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserLogin
 {
-    static class UserData
+    static public class UserData
     {
         static private List<User> _testUsers;
         static public List<User> TestUsers

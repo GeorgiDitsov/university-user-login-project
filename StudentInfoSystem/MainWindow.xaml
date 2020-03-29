@@ -1,0 +1,59 @@
+﻿<Window x:Class="StudentInfoSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentInfoSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="MainGrid">
+        <GroupBox Header="Лични данни" HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="330" Margin="25,10,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column ="0"  Grid.Row="0" x:Name="lblName" Content="Име:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10.6,0,0" RenderTransformOrigin="0.278,0" Height="28" Width="37"/>
+                <TextBox Grid.Column ="1" Grid.Row="0" x:Name="txtName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="9.6,10.6,0,0"/>
+                <Label Grid.Column="0" Grid.Row="1" x:Name="lblSurname" Content="Презиме:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10.4,0,0" Width="62" Height="26"/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtSurname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="9.8,13.4,0,0"/>
+                <Label Grid.Column="0" Grid.Row="2" x:Name="lblLastName" Content="Фамилия:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10.4,0,0" Height="26" Width="62"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtLastName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="9.8,12.4,0,0"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Студентска информация" HorizontalAlignment="Left" Height="224" VerticalAlignment="Top" Width="705" Margin="25,185,0,0">
+            <Grid Margin="0,0,-0.2,1.2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column ="0"  Grid.Row="0" x:Name="lblFaculty" Content="Факултет:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,15,0,0"/>
+                <TextBox Grid.Column ="0" x:Name="txtFaculty" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="134,15,0,0"/>
+                <Label x:Name="lblProgramme" Content="Специалност:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,59,0,0"/>
+                <TextBox x:Name="txtProgramme" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="134,59,0,0"/>
+                <Label x:Name="lblOKS" Content="ОКС:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,15,0,0" Grid.Row="1" Width="84" Height="25"/>
+                <TextBox x:Name="txtOKS" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="134,15,0,0" Grid.Row="1"/>
+                <Label x:Name="lblStatus" Content="Статус:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,61,0,0" Grid.Row="1"/>
+                <TextBox x:Name="txtStatus" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="134,61,0,0" Grid.Row="1"/>
+                <Label x:Name="lblFacultyNumber" Content="Фак.номер:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44.6,64,0,0" Grid.Row="1" Grid.Column="1"/>
+                <TextBox x:Name="txtFacultyNumber" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="137.6,64,0,0" Grid.Row="1" Grid.Column="1"/>
+                <Label Grid.Column ="1" x:Name="lblCourse" Content="Курс:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44.6,12,0,0"/>
+                <TextBox x:Name="txtCourse" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="137.6,15,0,0" Grid.Column="1"/>
+                <Label x:Name="lblStream" Content="Поток:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44.6,59,0,0" Grid.Column="1"/>
+                <TextBox x:Name="txtStream" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="137.6,59,0,0" Grid.Column="1"/>
+                <Label x:Name="lblGroup" Content="Група:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44.6,12,0,0" Grid.Column="1" Grid.Row="1"/>
+                <TextBox x:Name="txtGroup" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="137.6,15,0,0" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace UserLogin
 {
-    class User
+    public class User
     {
         public String Username
         { get; set; }
         public String Password
         { get; set; }
-        public String FacNumber
+        public String FacultyNumber
         { get; set; }
         public Int32 Role
         { get; set; }
@@ -28,7 +28,7 @@ namespace UserLogin
         {
             this.Username = username;
             this.Password = password;
-            this.FacNumber = facNumber;
+            this.FacultyNumber = facNumber;
             this.Role = role;
             this.Created = created;
             this.ValidUntil = validUntil;
@@ -37,7 +37,7 @@ namespace UserLogin
 
         public override string ToString()
         {
-            return "User [ username: " + this.Username + " password: "+ this.Password + " faculty Number: "+ this.FacNumber + " role: " + Role + 
+            return "User [ username: " + this.Username + " password: "+ this.Password + " faculty Number: "+ this.FacultyNumber + " role: " + Role + 
                 " created: "+ Created + " valid until:" + ValidUntil +" last time logged "+LastTimeLogged+" ]";
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UserLogin
 {
-    static class Logger
+    static public class Logger
     {
         private const string logFileName = "test.txt";
         static private List<string> currentSessionActivities = new List<string>();
