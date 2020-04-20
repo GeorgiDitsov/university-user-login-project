@@ -30,7 +30,6 @@ namespace StudentInfoSystem
             mainFormVM.CurrentStudent = (Student) data;
             Title = mainFormVM.Title;
             this.DataContext = mainFormVM;
-            Console.WriteLine(((MainFormVM) this.DataContext).CurrentStudent.ToString());
         }
 
         private void ResetFields(object sender, RoutedEventArgs e)
