@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Timers;
 
 namespace WpfExample
 {
@@ -14,29 +15,25 @@ namespace WpfExample
         private ICommand toggleExecuteCommand
         { get; set; }
         private bool canExecute = true;
-        private string lblHi = "";
+        private string labelHi = "";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string HiLabelContent 
         {
-            get { return lblHi; }
+            get { return labelHi; }
             set 
             {
-                if (lblHi != value) 
+                if (this.labelHi != value)
                 {
-                    this.lblHi = value;
-                    PropChanged("lblHi");
+                    this.labelHi = value;
+                    PropChanged("HiLabelContent");
                 }
             }
         }
         public string HiButtonContent
         {
             get { return "click to hi"; }
-        }
-        public string CurrentDateTime
-        {
-            get { return DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString(); }
         }
         public bool CanExecute
         {
@@ -47,6 +44,10 @@ namespace WpfExample
                 { return; }
                 this.canExecute = value;
             }
+        }
+        public string CurrentDateTime
+        {
+            get { return DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString(); }
         }
         public ICommand ToggleExecuteCommand
         {
@@ -62,19 +63,21 @@ namespace WpfExample
             set
             { hiButtonCommand = value; }
         }
-        public void PropChanged(String propertyName)
+        public void PropChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public MainWindowViewModel()
         {
             HiButtonCommand = new RelayCommand(ShowMessage, param => this.canExecute);
             toggleExecuteCommand = new RelayCommand(ChangeCanExecute);
+            Timer timer = new Timer
+            {
+                Interval = 1000,
+            };
+            timer.Elapsed += UpdateDateTime;
+            timer.Start();
         }
-
         public void ShowMessage(object obj)
         {
             HiLabelContent = obj.ToString();
@@ -82,6 +85,10 @@ namespace WpfExample
         public void ChangeCanExecute(object obj)
         {
             canExecute = !canExecute;
+        }
+        public void UpdateDateTime(object obj, ElapsedEventArgs e)
+        {
+            PropChanged("CurrentDateTime");
         }
     }
 }
