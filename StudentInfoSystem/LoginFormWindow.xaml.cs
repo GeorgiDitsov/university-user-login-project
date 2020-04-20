@@ -40,8 +40,7 @@ namespace StudentInfoSystem
                 try
                 {
                     Student student = StudentValidation.GetStudentDataByUser(user);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.FillStudentDataIntoFields(student);
+                    MainWindow mainWindow = new MainWindow(student);
                     mainWindow.Show();
                     Close();
                 } catch

@@ -8,17 +8,17 @@ namespace StudentInfoSystem
 {
     public class Student
     {
-        public string FirstName;
-        public string Surname;
-        public string LastName;
-        public string Faculty;
-        public string Programme;
-        public Qualification Qualification;
-        public Status Status;
-        public string FacultyNumber;
-        public string Course;
-        public string Stream;
-        public string Group;
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string LastName { get; set; }
+        public string Faculty { get; set; }
+        public string Programme { get; set; }
+        public Qualification Qualification { get; set; }
+        public Status Status { get; set; }
+        public string FacultyNumber { get; set; }
+        public string Course { get; set; }
+        public string Stream { get; set; }
+        public string Group { get; set; }
 
         public Student()
         {

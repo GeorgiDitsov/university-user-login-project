@@ -53,6 +53,7 @@ namespace UserLogin
             if (user == null)
             {
                 this._errorMsg = "No user found.";
+                return false;
             }
             currentUserUsername = user.Username;
             currentUserRole = (UserRoles)user.Role;

@@ -23,22 +23,14 @@ namespace StudentInfoSystem
         public MainWindow()
         {
             InitializeComponent();
-            Title = "Студентска информационна система";
         }
-
-        public void FillStudentDataIntoFields(Student student)
+        public MainWindow(object data) : this()
         {
-            txtName.Text = student.FirstName;
-            txtSurname.Text = student.Surname;
-            txtLastName.Text = student.LastName;
-            txtFaculty.Text = student.Faculty;
-            txtProgramme.Text = student.Programme;
-            txtOKS.Text = student.Qualification.ToString();
-            txtStatus.Text = student.Status.ToString();
-            txtCourse.Text = student.Course;
-            txtStream.Text = student.Stream;
-            txtGroup.Text = student.Group;
-            txtFacultyNumber.Text = student.FacultyNumber;
+            MainFormVM mainFormVM = new MainFormVM();
+            mainFormVM.CurrentStudent = (Student) data;
+            Title = mainFormVM.Title;
+            this.DataContext = mainFormVM;
+            Console.WriteLine(((MainFormVM) this.DataContext).CurrentStudent.ToString());
         }
 
         private void ResetFields(object sender, RoutedEventArgs e)
