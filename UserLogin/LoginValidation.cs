@@ -32,33 +32,40 @@ namespace UserLogin
                 this._errorMsg = "No username is entered.";
                 this._actionOnError(this._errorMsg);
                 return false;
-            } else if (isEmptyInput(this._password))
+            }
+            else if (isEmptyInput(this._password))
             {
                 this._errorMsg = "No password is entered.";
                 this._actionOnError(this._errorMsg);
                 return false;
-            } else if (isUnderFiveSymbols(this._username))
+            }
+            else if (isUnderFiveSymbols(this._username))
             {
                 this._errorMsg = "Entered username is under 5 symbols long.";
                 this._actionOnError(this._errorMsg);
                 return false;
-            } else if (isUnderFiveSymbols(this._password))
+            }
+            else if (isUnderFiveSymbols(this._password))
             {
                 this._errorMsg = "Entered password is under 5 symbols long.";
                 this._actionOnError(this._errorMsg);
                 return false;
             }
-            List<User> users = UserData.TestUsers;
-            user = UserData.IsUserPassCorrect(this._username, this._password);
-            if (user == null)
+            else 
             {
-                this._errorMsg = "No user found.";
-                return false;
+                List<User> users = UserData.TestUsers;
+                user = UserData.IsUserPassCorrect(this._username, this._password);
+                if (user == null)
+                {
+                    this._errorMsg = "No user found.";
+                    this._actionOnError(this._errorMsg);
+                    return false;
+                }
+                currentUserUsername = user.Username;
+                currentUserRole = (UserRoles)user.Role;
+                Logger.LogActivity("Successfull login");
+                return true;
             }
-            currentUserUsername = user.Username;
-            currentUserRole = (UserRoles)user.Role;
-            Logger.LogActivity("Successfull login");
-            return true;
         }
 
         private bool isEmptyInput(String input)

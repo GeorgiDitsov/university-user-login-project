@@ -20,10 +20,12 @@ namespace UserLogin
 
         static private void ResetTestUserData()
         {
-            _testUsers = new List<User>();
-            _testUsers.Add(new User("Goshko123", "45678", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now));
-            _testUsers.Add(new User("Student1", "Some pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now));
-            _testUsers.Add(new User("Student2", "stupidPassword", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, new DateTime(2020, 2, 1, 0, 0, 0)));
+            _testUsers = new List<User>
+            {
+                new User("Goshko123", "45678", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now),
+                new User("Student1", "Some pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now),
+                new User("Student2", "stupidPassword", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, new DateTime(2020, 2, 1, 0, 0, 0))
+            };
         }
 
         static public User IsUserPassCorrect(String username, String password)

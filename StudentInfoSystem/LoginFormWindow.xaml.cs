@@ -29,7 +29,7 @@ namespace StudentInfoSystem
             MessageBox.Show(errorMsg);
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
             string password = passwordBox.Password;

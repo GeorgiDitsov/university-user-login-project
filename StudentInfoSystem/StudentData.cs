@@ -16,7 +16,7 @@ namespace StudentInfoSystem
                 ResetTestStudentData(); 
                 return _testStudents;
             }
-            private set => _testStudents = value; 
+            private set => _testStudents = value;
         }
 
         static private void ResetTestStudentData()
