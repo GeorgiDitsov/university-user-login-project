@@ -10,19 +10,24 @@ namespace UserLogin
     static public class Logger
     {
         private const string logFileName = "test.txt";
-        static private List<string> currentSessionActivities = new List<string>();
+        static private List<Logs> currentSessionActivities = new List<Logs>();
 
         static public void LogActivity(string activity)
         {
-            string activityLine = DateTime.Now + ";"
-                + LoginValidation.currentUserUsername + ";"
-                + LoginValidation.currentUserRole + ";"
-                + activity;
-            currentSessionActivities.Add(activityLine);
+            Logs logs = new Logs(activity, DateTime.Now, LoginValidation.currentUserUsername, LoginValidation.currentUserRole);
+            currentSessionActivities.Add(logs);
+            SaveLogsToDb(logs);
             if (File.Exists(logFileName))
             {
-                File.AppendAllText(logFileName, activityLine);
+                File.AppendAllText(logFileName, logs.ToString());
             }
+        }
+
+        private static void SaveLogsToDb(Logs logs)
+        {
+            LogsContext dbContext = new LogsContext();
+            dbContext.Logs.Add(logs);
+            dbContext.SaveChanges();
         }
 
         static public string ReadLoggFileContent()
@@ -37,9 +42,9 @@ namespace UserLogin
             // return File.ReadAllText(logFileName);
         }
 
-        static public string GetCurrentSessionActivities()
+        static public Logs GetCurrentSessionActivities()
         {
-            string currentActivity = currentSessionActivities[currentSessionActivities.Count - 1];
+            Logs currentActivity = currentSessionActivities[currentSessionActivities.Count - 1];
             return currentActivity;
         }
     }

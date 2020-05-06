@@ -8,6 +8,7 @@ namespace StudentInfoSystem
 {
     public class Student
     {
+        public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string LastName { get; set; }
@@ -25,9 +26,10 @@ namespace StudentInfoSystem
             // nothing
         }
 
-        public Student(string firstName, string surname, string lastName, string faculty, string programme, Qualification qualification, 
+        public Student(int studentId, string firstName, string surname, string lastName, string faculty, string programme, Qualification qualification, 
             Status status, string facultyNumber, string course, string stream, string group)
         {
+            this.StudentId = studentId;
             this.FirstName = firstName;
             this.Surname = surname;
             this.LastName = lastName;

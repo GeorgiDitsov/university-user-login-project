@@ -8,66 +8,65 @@ namespace UserLogin
 {
     static public class UserData
     {
+        static private UserContext _userContext = new UserContext();
         static private List<User> _testUsers;
         static public List<User> TestUsers
         {
-            get {
-                ResetTestUserData();
-                return _testUsers;
+            get 
+            {
+                return _testUsers = new List<User>
+                {
+                    new User(1, "Goshko123", "456789", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now),
+                    new User(2, "Student1", "Some_pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now),
+                    new User(3, "Student2", "Stupid_pass", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now)
+                };
             }
             set { }
         }
 
-        static private void ResetTestUserData()
-        {
-            _testUsers = new List<User>
-            {
-                new User("Goshko123", "45678", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now),
-                new User("Student1", "Some pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now),
-                new User("Student2", "stupidPassword", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, new DateTime(2020, 2, 1, 0, 0, 0))
-            };
-        }
-
         static public User IsUserPassCorrect(String username, String password)
         {
-            User foundUser = FindUserByUsername(username);
-            if (foundUser != null && foundUser.Password.Equals(password))
-            {
-                return foundUser;
-            }
-            return null;
+            User result = (from user in _userContext.Users where user.Username.Equals(username) && user.Password.Equals(password) select user).First();
+            return result;
         }
 
-        static public void SetUserActiveTo(string username, DateTime newValidUntilDate)
+        static public void SetUserActiveTo(string username, DateTime activeTo)
         {
             User foundUser = FindUserByUsername(username);
-            if(foundUser != null)
+            if (foundUser != null)
             {
-                foundUser.ValidUntil = newValidUntilDate;
+                foundUser.ActiveTo = activeTo;
+                _userContext.SaveChanges();
                 Logger.LogActivity("Changing activity of user " + username);
+            }
+        }
+
+        static public void SetUserLastTimeLogged(string username, DateTime lastTimeLogged)
+        {
+            User foundUser = FindUserByUsername(username);
+            if (foundUser != null)
+            {
+                foundUser.LastTimeLogged = lastTimeLogged;
+                _userContext.SaveChanges();
+                Logger.LogActivity("Changing last time user was logged");
             }
         }
 
         static public void AssignUserRole(string username, UserRoles newRole)
         {
             User foundUser = FindUserByUsername(username);
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 foundUser.Role = Convert.ToInt32(newRole);
+                _userContext.SaveChanges();
                 Logger.LogActivity("Chaging role of user " + username);
             }
         }
 
         static private User FindUserByUsername(string username)
         {
-            foreach(User user in _testUsers)
-            {
-                if(user.Username.Equals(username))
-                {
-                    return user;
-                }
-            }
-            return null;
+            User result = (from user in _userContext.Users where user.Username.Equals(username) select user).First();
+            return result;
         }
     }
 }

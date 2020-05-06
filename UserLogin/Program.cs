@@ -25,9 +25,8 @@ namespace UserLogin
             if (loginValidation.ValidateUserInput(ref user))
             {
                 Console.WriteLine(user.ToString());
-                
-                Console.WriteLine("Last time when you logged was before " + getDaysDifference(DateTime.Now, user.LastTimeLogged));
-                user.LastTimeLogged = DateTime.Now;
+                Console.WriteLine("Last time when you logged was before " + getDaysDifference(DateTime.Now, (DateTime) user.LastTimeLogged));
+                UserData.SetUserLastTimeLogged(user.Username, DateTime.Now);
                 switch (LoginValidation.currentUserRole)
                 {
                     case UserRoles.ADMIN:
@@ -94,7 +93,7 @@ namespace UserLogin
                     Console.WriteLine(fileContent);
                     return true;
                 case 5:
-                    string currentLogActivity = Logger.GetCurrentSessionActivities();
+                    Logs currentLogActivity = Logger.GetCurrentSessionActivities();
                     Console.WriteLine(currentLogActivity);
                     return true;
                 default:

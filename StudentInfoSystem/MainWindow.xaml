@@ -96,6 +96,9 @@
                     </Grid>
                     <Grid Grid.Row="3">
                         <TextBox Text="{Binding CurrentStudent.Status}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="23" Width="120"/>
+                        <!--
+                            <ListBox ItemsSource="{Binding StudStatusChoices}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Width="173"/>
+                        -->
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">

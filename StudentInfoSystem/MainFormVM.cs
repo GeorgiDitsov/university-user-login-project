@@ -17,6 +17,7 @@ namespace StudentInfoSystem
         {
             get { return "Студентска информационна система"; }
         }
+
         public Student CurrentStudent
         {
             get { return _student; }
