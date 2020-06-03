@@ -16,9 +16,35 @@ namespace UserLogin
             {
                 return _testUsers = new List<User>
                 {
-                    new User(1, "Goshko123", "456789", String.Empty, (Int32)UserRoles.ADMIN, DateTime.Now, DateTime.MaxValue, DateTime.Now),
-                    new User(2, "Student1", "Some_pass", "1234567890", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now),
-                    new User(3, "Student2", "Stupid_pass", "1234567891", (Int32)UserRoles.STUDENT, DateTime.Now, DateTime.MaxValue, DateTime.Now)
+                    new User()
+                    {
+                        UserId = 1,
+                        Username = "Goshko123",
+                        Password = "456789",
+                        Role = (Int32)UserRoles.ADMIN,
+                        ActiveTo = DateTime.MaxValue,
+                        LastTimeLogged = DateTime.Now
+                    },
+                    new User()
+                    {
+                        UserId = 2,
+                        Username = "Student1",
+                        Password = "Some_pass",
+                        FacultyNumber = "1234567890",
+                        Role = (Int32)UserRoles.STUDENT,
+                        ActiveTo = DateTime.MaxValue,
+                        LastTimeLogged = DateTime.Now
+                    },
+                    new User()
+                    {
+                        UserId = 3,
+                        Username = "Student2",
+                        Password = "Another_pass",
+                        FacultyNumber = "1234567891",
+                        Role = (Int32)UserRoles.STUDENT,
+                        ActiveTo = DateTime.MaxValue,
+                        LastTimeLogged = DateTime.Now
+                    }
                 };
             }
             set { }

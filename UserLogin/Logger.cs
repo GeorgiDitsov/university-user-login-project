@@ -10,23 +10,28 @@ namespace UserLogin
     static public class Logger
     {
         private const string logFileName = "test.txt";
-        static private List<Logs> currentSessionActivities = new List<Logs>();
+        static private List<Log> currentSessionActivities = new List<Log>();
 
         static public void LogActivity(string activity)
         {
-            Logs logs = new Logs(activity, DateTime.Now, LoginValidation.currentUserUsername, LoginValidation.currentUserRole);
-            currentSessionActivities.Add(logs);
-            SaveLogsToDb(logs);
+            Log log = new Log()
+            {
+                Activity = activity,
+                Username = LoginValidation.currentUserUsername,
+                UserRole = (int) LoginValidation.currentUserRole
+            };
+            currentSessionActivities.Add(log);
+            SaveLogsToDb(log);
             if (File.Exists(logFileName))
             {
-                File.AppendAllText(logFileName, logs.ToString());
+                File.AppendAllText(logFileName, log.ToString());
             }
         }
 
-        private static void SaveLogsToDb(Logs logs)
+        private static void SaveLogsToDb(Log log)
         {
-            LogsContext dbContext = new LogsContext();
-            dbContext.Logs.Add(logs);
+            LogContext dbContext = new LogContext();
+            dbContext.Logs.Add(log);
             dbContext.SaveChanges();
         }
 
@@ -39,12 +44,11 @@ namespace UserLogin
                 sb.Append(line + " \n");
             }
             return sb.ToString();
-            // return File.ReadAllText(logFileName);
         }
 
-        static public Logs GetCurrentSessionActivities()
+        static public Log GetCurrentSessionActivities()
         {
-            Logs currentActivity = currentSessionActivities[currentSessionActivities.Count - 1];
+            Log currentActivity = currentSessionActivities[currentSessionActivities.Count - 1];
             return currentActivity;
         }
     }

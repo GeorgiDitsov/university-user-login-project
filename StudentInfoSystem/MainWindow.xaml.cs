@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using UserLogin;
+using MySql.Data.MySqlClient;
 
 namespace StudentInfoSystem
 {
@@ -23,7 +24,6 @@ namespace StudentInfoSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        private StudentInfoContext _studentInfoContext;
 
         public MainWindow()
         {
@@ -32,17 +32,20 @@ namespace StudentInfoSystem
             this.DataContext = this;
             _studentInfoContext = new StudentInfoContext();*/
         }
+
         public MainWindow(object data) : this()
         {
-            MainFormVM mainFormVM = new MainFormVM();
-            mainFormVM.CurrentStudent = (Student) data;
+            MainFormVM mainFormVM = new MainFormVM
+            {
+                CurrentStudent = (Student)data
+            };
             Title = mainFormVM.Title;
             this.DataContext = mainFormVM;
         }
 
         public List<string> StudStatusChoices { get; set; }
 
-        private void FillStudStatusChoices()
+        /*private void FillStudStatusChoices()
         {
             StudStatusChoices = new List<string>();
             using (IDbConnection connection = new
@@ -63,9 +66,9 @@ namespace StudentInfoSystem
                     notEndOfResult = reader.Read();
                 }
             }
-        }
+        }*/
 
-        public bool TestStudentsIfEmpty()
+        /*public bool TestStudentsIfEmpty()
         {
             IEnumerable<Student> queryStudents = _studentInfoContext.Students;
             int countStudents = queryStudents.Count();
@@ -79,15 +82,14 @@ namespace StudentInfoSystem
                 _studentInfoContext.Students.Add(student);
             }
             _studentInfoContext.SaveChanges();
-        }
+        }*/
 
         private void ResetFields(object sender, RoutedEventArgs e)
         {
             foreach (var item in MainGrid.Children)
             {
-                if (item is TextBox)
+                if (item is TextBox textBox)
                 {
-                    TextBox textBox = (TextBox)item;
                     textBox.Clear();
                 }
             }
@@ -97,9 +99,8 @@ namespace StudentInfoSystem
         {
             foreach (var item in MainGrid.Children)
             {
-                if (item is TextBox)
+                if (item is TextBox textBox)
                 {
-                    TextBox textBox = (TextBox)item;
                     textBox.IsEnabled = false;
                 }
             }
@@ -109,30 +110,11 @@ namespace StudentInfoSystem
         {
             foreach (var item in MainGrid.Children)
             {
-                if (item is TextBox)
+                if (item is TextBox textBox)
                 {
-                    TextBox textBox = (TextBox)item;
                     textBox.IsEnabled = true;
                 }
             }
         }
-
-        /*private void Add_Students_If_Empty(object sender, RoutedEventArgs e)
-        {
-            if (TestStudentsIfEmpty())
-            {
-                CopyTestStudents();
-                MessageBox.Show("Students added successfully");
-            }
-        }*/
-
-        /*private void Add_Users_If_Empty(object sender, RoutedEventArgs e)
-        {
-            foreach (User user in UserData.TestUsers)
-            {
-                _studentInfoContext.Users.Add(user);
-            }
-            _studentInfoContext.SaveChanges();
-        }*/
     }
 }

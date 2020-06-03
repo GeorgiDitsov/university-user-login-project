@@ -93,7 +93,7 @@ namespace UserLogin
                     Console.WriteLine(fileContent);
                     return true;
                 case 5:
-                    Logs currentLogActivity = Logger.GetCurrentSessionActivities();
+                    Log currentLogActivity = Logger.GetCurrentSessionActivities();
                     Console.WriteLine(currentLogActivity);
                     return true;
                 default:

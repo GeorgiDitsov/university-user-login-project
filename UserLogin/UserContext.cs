@@ -1,17 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-
 namespace UserLogin
 {
-    class UserContext : DbContext
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class UserContext : DbContext
     {
-        public UserContext() : base(Properties.Settings.Default.DbConnect)
+        public UserContext()
+            : base("name=UserContext")
         { }
 
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .Property(e => e.Username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Password)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.FacultyNumber)
+                .IsUnicode(false);
+        }
     }
 }
